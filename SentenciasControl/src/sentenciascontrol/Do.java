@@ -5,11 +5,16 @@
  */
 package sentenciascontrol;
 
+import javax.swing.JOptionPane;
+import modelos.MDo;
+
 /**
  *
  * @author Armando J. López L.
  */
 public class Do extends javax.swing.JInternalFrame {
+
+    MDo caso = new MDo();
 
     /**
      * Creates new form Do
@@ -82,6 +87,12 @@ public class Do extends javax.swing.JInternalFrame {
         bCalcular1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCalcular1ActionPerformed(evt);
+            }
+        });
+
+        tfNum2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNum2ActionPerformed(evt);
             }
         });
 
@@ -213,32 +224,115 @@ public class Do extends javax.swing.JInternalFrame {
 
     private void bVerificar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerificar3ActionPerformed
         // TODO add your handling code here:
+        try {
+            int n = Integer.parseInt(tfNum4.getText());
+            boolean resp = caso.num_comp(n);
+            if (resp) {
+                JOptionPane.showMessageDialog(this, "El numero es compuesto",
+                        "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "El numero es primo",
+                        "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bVerificar3ActionPerformed
 
     private void bVerificar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerificar4ActionPerformed
-        try{
+        try {
+            String clave;
+            do {
+                clave = tfContra5.getText();
+                if (!clave.equals("abc.123")) {
+                    JOptionPane.showMessageDialog(this, "La contraseña es incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                    tfContra5.setText("");
+                }
+                else{
+                    JOptionPane.showMessageDialog(this, "La clave es correcta", "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+                    tfContra5.setText("");
+                    break;
+                }
 
-        }
-        catch(NumberFormatException ex){
-
+            } while (clave.equals("abc.123"));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_bVerificar4ActionPerformed
 
     private void bCalcular1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCalcular1ActionPerformed
         // TODO add your handling code here:
+        try {
+            int n = Integer.parseInt(tfNum1.getText());
+            double resp = caso.prom_1N(n);
+
+            JOptionPane.showMessageDialog(this, "El promedio es " + resp, "Promedio de 1 a " + n, JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bCalcular1ActionPerformed
 
     private void bCalcular2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCalcular2ActionPerformed
         // TODO add your handling code here:
+        try {
+            int a = Integer.parseInt(tfNum2.getText());
+            int b = Integer.parseInt(tfNum3.getText());
+            double resp = caso.prom_AB(a, b);
+
+            JOptionPane.showMessageDialog(this, "El promedio es " + resp, "Promedio de " + a + " a " + b, JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bCalcular2ActionPerformed
 
     private void bImprimir6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bImprimir6ActionPerformed
         // TODO add your handling code here:
+        try {
+            int t, x, y, z, a;
+            x = 1;
+            y = 1;
+            t = 0;
+
+            do {
+                if (t == 0) {
+                    JOptionPane.showMessageDialog(this, "0", "Termino 1", JOptionPane.INFORMATION_MESSAGE);
+                } else if (t == 1) {
+                    JOptionPane.showMessageDialog(this, "1", "Termino 2", JOptionPane.INFORMATION_MESSAGE);
+                } else if (t == 2) {
+                    JOptionPane.showMessageDialog(this, "1", "Termino 3", JOptionPane.INFORMATION_MESSAGE);
+                } else if (t > 2) {
+                    z = (x + y);
+                    x = y;
+                    y = z;
+                    a = t + 1;
+                    JOptionPane.showMessageDialog(this, z, "Termino " + a, JOptionPane.INFORMATION_MESSAGE);
+                }
+                t++;
+            } while (t < 6);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bImprimir6ActionPerformed
 
     private void bCalcular5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCalcular5ActionPerformed
         // TODO add your handling code here:
+        try {
+            int i = 2;
+            double resp = caso.sumaimpar(i);
+            JOptionPane.showMessageDialog(this, "La suma es " + resp, "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bCalcular5ActionPerformed
+
+    private void tfNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNum2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNum2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,7 +13,9 @@ import modelos.MSwitch;
  * @author Armando J. López L.
  */
 public class Switch extends javax.swing.JInternalFrame {
-     MSwitch opcion = new MSwitch();
+
+    MSwitch opcion = new MSwitch();
+
     /**
      * Creates new form Switch
      */
@@ -228,85 +230,85 @@ public class Switch extends javax.swing.JInternalFrame {
 
     private void bMostrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrar1ActionPerformed
         // TODO add your handling code here:
-       try{
+        try {
             String mes = tfMes1.getText();
             int resp = opcion.grupoMes(mes);
-            switch(resp){
+            switch (resp) {
                 case 1:
-                JOptionPane.showMessageDialog(this, "Ingrese un mes valido",
-                "Error",JOptionPane.WARNING_MESSAGE);   
-                break;
+                    JOptionPane.showMessageDialog(this, "Ingrese un mes valido",
+                            "Error", JOptionPane.WARNING_MESSAGE);
+                    break;
                 case 28:
-                JOptionPane.showMessageDialog(this, "Pertenece al grupo de "+resp+" dias y en años bisiestos al grupo de 29 dias",
-                "Grupo según el mes",JOptionPane.INFORMATION_MESSAGE); 
-                break;
+                    JOptionPane.showMessageDialog(this, "Pertenece al grupo de " + resp + " dias y en años bisiestos al grupo de 29 dias",
+                            "Grupo según el mes", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 default:
-                JOptionPane.showMessageDialog(this, "Pertenece al grupo de "+resp+" dias",
-               "Grupo según el mes",JOptionPane.INFORMATION_MESSAGE);
-                break;
+                    JOptionPane.showMessageDialog(this, "Pertenece al grupo de " + resp + " dias",
+                            "Grupo según el mes", JOptionPane.INFORMATION_MESSAGE);
+                    break;
             }
-            
-        }catch(Exception ex){
+
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        } 
+        }
     }//GEN-LAST:event_bMostrar1ActionPerformed
 
     private void bMostrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrar2ActionPerformed
         // TODO add your handling code here:
-       try{
+        try {
             int mes1 = Integer.parseInt(tfMes2.getText());
             String resp = opcion.epocaMes(mes1);
-           JOptionPane.showMessageDialog(this, resp,
-            "Época del año",JOptionPane.INFORMATION_MESSAGE);   
-        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, resp,
+                    "Época del año", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        } 
+        }
     }//GEN-LAST:event_bMostrar2ActionPerformed
 
     private void bMostrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrar3ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int mes2 = Integer.parseInt(tfMes3.getText());
             int resp = opcion.cantDias(mes2);
-            switch(resp){
+            switch (resp) {
                 case 0:
                     JOptionPane.showMessageDialog(this, "Ingrese un mes valido",
-                    "Error",JOptionPane.WARNING_MESSAGE);   
-                break;
+                            "Error", JOptionPane.WARNING_MESSAGE);
+                    break;
                 case 28:
-                    JOptionPane.showMessageDialog(this, "Este mes tiene "+resp+" dias y en años bisiestos tiene 29 dias",
-                    "Cantidad de dias del mes",JOptionPane.INFORMATION_MESSAGE); 
-                break;
+                    JOptionPane.showMessageDialog(this, "Este mes tiene " + resp + " dias y en años bisiestos tiene 29 dias",
+                            "Cantidad de dias del mes", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 default:
-                 JOptionPane.showMessageDialog(this,"Este mes tiene "+resp+" dias",
-                "Cantidad de dias del mes",JOptionPane.INFORMATION_MESSAGE);   
-                
+                    JOptionPane.showMessageDialog(this, "Este mes tiene " + resp + " dias",
+                            "Cantidad de dias del mes", JOptionPane.INFORMATION_MESSAGE);
+
             }
-              
-        }catch(Exception ex){
+
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
-        } 
+        }
     }//GEN-LAST:event_bMostrar3ActionPerformed
 
     private void bDeterminar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeterminar5ActionPerformed
         // TODO add your handling code here:
-        try{
+        try {
             int numero = Integer.parseInt(tfNum5.getText());
             int resp = opcion.parImpar(numero);
-            switch(resp){
-                case 0: 
-                    JOptionPane.showMessageDialog(this, "El numero "+numero+" es impar",
-                    "Número par o impar",JOptionPane.INFORMATION_MESSAGE);
-                break;
-                case 1: 
-                    JOptionPane.showMessageDialog(this, "El numero "+numero+" es par",
-                    "Número par o impar",JOptionPane.INFORMATION_MESSAGE);
-                break;
+            switch (resp) {
+                case 0:
+                    JOptionPane.showMessageDialog(this, "El numero " + numero + " es impar",
+                            "Número par o impar", JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                case 1:
+                    JOptionPane.showMessageDialog(this, "El numero " + numero + " es par",
+                            "Número par o impar", JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 default:
                     JOptionPane.showMessageDialog(this, "Ingrese un entero",
-                    "Error",JOptionPane.WARNING_MESSAGE); 
-            }   
-        }catch(Exception ex){
+                            "Error", JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_bDeterminar5ActionPerformed
@@ -314,43 +316,45 @@ public class Switch extends javax.swing.JInternalFrame {
     private void bCalcular4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCalcular4ActionPerformed
         // TODO add your handling code here:
         int calculo = 0;
-        if(rbRaiz.isSelected()){
-         calculo=1;
-        }else if(rbResiduo.isSelected()){
-         calculo=2;   
-        }else if(rbMenor.isSelected()){
-         calculo =3;
+        if (rbRaiz.isSelected()) {
+            calculo = 1;
+        } else if (rbResiduo.isSelected()) {
+            calculo = 2;
+        } else if (rbMenor.isSelected()) {
+            calculo = 3;
         }
-        
-        switch(calculo){
-            case 1: 
-            double rnum= Double.parseDouble(JOptionPane.showInputDialog("Ingrese el numero a sacar su raiz"));
-            int exp= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el exponente para la raiz"));
-            double resp=opcion.numRaiz(rnum, exp);
-            JOptionPane.showMessageDialog(this, "La raiz es "+resp,
-                    "Raiz de "+rnum+" a la potencia "+exp,JOptionPane.INFORMATION_MESSAGE);
-            break;
+
+        switch (calculo) {
+            case 1:
+                double rnum = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el numero a sacar su raiz"));
+                int exp = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el exponente para la raiz"));
+                double resp = opcion.numRaiz(rnum, exp);
+                JOptionPane.showMessageDialog(this, "La raiz es " + resp,
+                        "Raiz de " + rnum + " a la potencia " + exp, JOptionPane.INFORMATION_MESSAGE);
+                break;
             case 2:
-            int ent1= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero a dividir"));
-            int ent2= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero con el que va a dividir"));
-            int resp1=opcion.divisionEntera(ent1, ent2);
-            JOptionPane.showMessageDialog(this, "El residuo de la division es "+resp1,
-                    "Division "+ent1+"/"+ent2,JOptionPane.INFORMATION_MESSAGE);
-            break;
+                int ent1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero a dividir"));
+                int ent2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero con el que va a dividir"));
+                int resp1 = opcion.divisionEntera(ent1, ent2);
+                JOptionPane.showMessageDialog(this, "El residuo de la division es " + resp1,
+                        "Division " + ent1 + "/" + ent2, JOptionPane.INFORMATION_MESSAGE);
+                break;
             case 3:
-            int cant= Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de numeros a evaluar"));
-            /*double arreglo[]=new double[cant];
+                int cant = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de numeros a evaluar"));
+                /*double arreglo[]=new double[cant];
            
             for(int i=0;i<cant;i++){
                 arreglo[i]=Double.parseDouble(JOptionPane.showInputDialog("Numero en la posicion no."+i));
             }
-*/
-            //double resp2[]= new double[1];
-            double resp2=opcion.numsMenor(cant);
-            JOptionPane.showMessageDialog(this, "El numero menor es "+resp2,
-                    "Numero Menor ",JOptionPane.INFORMATION_MESSAGE);
-            break;
+                 */
+                //double resp2[]= new double[1];
+                double resp2 = opcion.numsMenor(cant);
+                JOptionPane.showMessageDialog(this, "El numero menor es " + resp2,
+                        "Numero Menor ", JOptionPane.INFORMATION_MESSAGE);
+                break;
             default:
+                JOptionPane.showMessageDialog(this, "Seleccione una opcion " ,
+                        "Error ", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bCalcular4ActionPerformed
 
