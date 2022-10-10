@@ -5,11 +5,16 @@
  */
 package sentenciascontrol;
 
+import javax.swing.JOptionPane;
+import modelos.MWhile;
+
 /**
  *
  * @author Armando J. López L.
  */
 public class While extends javax.swing.JInternalFrame {
+
+    MWhile Wl = new MWhile(0, 0, 1000, 0);
 
     /**
      * Creates new form While
@@ -49,6 +54,12 @@ public class While extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Sentencia de Repetición while de Java");
+
+        tfOracion1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfOracion1ActionPerformed(evt);
+            }
+        });
 
         lEjer5.setText("5. Restar la cuota al saldo de C$1000, e imprimir la cantidad de cuotas pagadas cuando se cancele la deuda total");
 
@@ -126,23 +137,24 @@ public class While extends javax.swing.JInternalFrame {
                                 .addComponent(tfOracion1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(lCalificacion)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCali4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bContar4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(tfNum3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bVerificar3))
                             .addComponent(lEjer1)
                             .addComponent(lEjer2)
                             .addComponent(lEjer3)
                             .addComponent(lEjer4)
-                            .addComponent(lEjer5))
+                            .addComponent(lEjer5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lCalificacion)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfCali4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bContar4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfNum3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bVerificar3)))))
                         .addGap(0, 32, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bCalcular1)
@@ -201,28 +213,96 @@ public class While extends javax.swing.JInternalFrame {
 
     private void bVerificar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerificar3ActionPerformed
         // TODO add your handling code here:
+        try {
+            int num = Integer.parseInt(tfNum3.getText());
+            int perf = Wl.perfecto(num);
+            if (num == perf) {
+                JOptionPane.showMessageDialog(this, "El número " + perf + " es perfecto",
+                        "Resultado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "El número " + num + " no es perfecto",
+                        "Resultado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bVerificar3ActionPerformed
 
     private void bSumar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSumar2ActionPerformed
         // TODO add your handling code here:
+        
+        try {
+            double numero = Double.parseDouble(tfNum2.getText());
+            if (numero != -1) {
+                Wl.setSuma(Wl.getSuma() + numero);
+                numero = Double.parseDouble(tfNum2.getText());
+                tfNum2.setText("");
+            } else {
+                tfNum2.setText("");
+                JOptionPane.showMessageDialog(this, "La suma de los números ingresados es " + Wl.getSuma(),
+                        "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                Wl.setSuma(0);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bSumar2ActionPerformed
 
     private void bContar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bContar4ActionPerformed
-        try{
+        try {
+            int calif = Integer.parseInt(tfCali4.getText());
+            if (calif >= 70 && calif <= 100) {
+                Wl.setAprobados(Wl.getAprobados() + 1);
+                tfCali4.setText("");
+            } else if (calif == -1) {
+                JOptionPane.showMessageDialog(this, "Cantidad de aprobados: "
+                        + "" + Wl.getAprobados(), "Aprobados", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                tfCali4.setText("");
+            }
 
-        }
-        catch(NumberFormatException ex){
-
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
     }//GEN-LAST:event_bContar4ActionPerformed
 
     private void bCalcular1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCalcular1ActionPerformed
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        try {
+        String oracion = tfOracion1.getText();
+        int cont = Wl.contarVocales(oracion);
+        JOptionPane.showMessageDialog(this, "La cantidad de vocales es " + cont,
+                "Cantidad de Vocales", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bCalcular1ActionPerformed
 
     private void bPagar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPagar5ActionPerformed
         // TODO add your handling code here:
+        try {
+            double cuota = Double.parseDouble(tfCuota5.getText());
+            if (Wl.getSaldo() - cuota <= 0) {
+                Wl.setCantCuotas(Wl.getCantCuotas() + 1);
+                JOptionPane.showMessageDialog(this, "Cuota Saldada en "+Wl.getCantCuotas()+" pagos!", "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+                tfCuota5.setText("");
+                Wl.setSaldo(1000);
+                Wl.setCantCuotas(0);
+            } else {
+                Wl.setSaldo(Wl.getSaldo() - cuota);
+                Wl.setCantCuotas(Wl.getCantCuotas() + 1);
+                tfCuota5.setText("");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_bPagar5ActionPerformed
+
+    private void tfOracion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfOracion1ActionPerformed
+
+
+    }//GEN-LAST:event_tfOracion1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
