@@ -5,6 +5,7 @@
  */
 package sentenciascontrol;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelos.MWhile;
 
@@ -15,7 +16,9 @@ import modelos.MWhile;
 public class While extends javax.swing.JInternalFrame {
 
     MWhile Wl = new MWhile(0, 0, 1000, 0);
-
+    ArrayList<Double> decimales = new ArrayList<Double>();
+    ArrayList<Integer> calificaciones = new ArrayList<Integer>();
+    ArrayList<Double> cuotas = new ArrayList<Double>();
     /**
      * Creates new form While
      */
@@ -54,6 +57,12 @@ public class While extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Sentencia de Repetición while de Java");
+
+        tfNum2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNum2ActionPerformed(evt);
+            }
+        });
 
         tfOracion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,18 +239,17 @@ public class While extends javax.swing.JInternalFrame {
 
     private void bSumar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSumar2ActionPerformed
         // TODO add your handling code here:
-        
         try {
             double numero = Double.parseDouble(tfNum2.getText());
+            decimales.add(numero);
             if (numero != -1) {
-                Wl.setSuma(Wl.getSuma() + numero);
-                numero = Double.parseDouble(tfNum2.getText());
                 tfNum2.setText("");
             } else {
                 tfNum2.setText("");
-                JOptionPane.showMessageDialog(this, "La suma de los números ingresados es " + Wl.getSuma(),
+                JOptionPane.showMessageDialog(this, "La suma de los números ingresados es " + Wl.sumar(decimales),
                         "Resultado", JOptionPane.INFORMATION_MESSAGE);
                 Wl.setSuma(0);
+                decimales.clear();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -251,16 +259,19 @@ public class While extends javax.swing.JInternalFrame {
     private void bContar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bContar4ActionPerformed
         try {
             int calif = Integer.parseInt(tfCali4.getText());
-            if (calif >= 70 && calif <= 100) {
-                Wl.setAprobados(Wl.getAprobados() + 1);
-                tfCali4.setText("");
-            } else if (calif == -1) {
-                JOptionPane.showMessageDialog(this, "Cantidad de aprobados: "
-                        + "" + Wl.getAprobados(), "Aprobados", JOptionPane.INFORMATION_MESSAGE);
-            } else {
+            if (calif >= 70 && calif <= 100 || calif == -1) {
+                calificaciones.add(calif);
                 tfCali4.setText("");
             }
-
+            if (calif == -1) {
+                Wl.cantidad(calificaciones);
+                JOptionPane.showMessageDialog(this, "Cantidad de aprobados: "
+                + "" + Wl.getAprobados(), "Aprobados", JOptionPane.INFORMATION_MESSAGE);
+                tfCali4.setText("");
+                calificaciones.clear();
+            }
+            tfCali4.setText("");
+            
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -283,17 +294,25 @@ public class While extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             double cuota = Double.parseDouble(tfCuota5.getText());
-            if (Wl.getSaldo() - cuota <= 0) {
-                Wl.setCantCuotas(Wl.getCantCuotas() + 1);
-                JOptionPane.showMessageDialog(this, "Cuota Saldada en "+Wl.getCantCuotas()+" pagos!", "Respuesta", JOptionPane.INFORMATION_MESSAGE);
+            if (cuota <= 0) {
+                JOptionPane.showMessageDialog(this, "No es una cuota"
+                        + " válida!!!", "Error", JOptionPane.ERROR_MESSAGE);
                 tfCuota5.setText("");
-                Wl.setSaldo(1000);
-                Wl.setCantCuotas(0);
             } else {
+                cuotas.add(cuota);
                 Wl.setSaldo(Wl.getSaldo() - cuota);
-                Wl.setCantCuotas(Wl.getCantCuotas() + 1);
-                tfCuota5.setText("");
+                if (Wl.getSaldo() <= 0) {
+                    JOptionPane.showMessageDialog(this, "Deuda saldada en "+
+                            Wl.cuotasParaSaldar(cuotas)+" pagos", "Cantidad"
+                                    + " de pagos", JOptionPane.INFORMATION_MESSAGE);
+                    Wl.setSaldo(1000);
+                    cuotas.clear();
+                } else {
+                    tfCuota5.setText("");
+                }
+                
             }
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
@@ -303,6 +322,10 @@ public class While extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_tfOracion1ActionPerformed
+
+    private void tfNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNum2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNum2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

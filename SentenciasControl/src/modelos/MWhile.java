@@ -4,6 +4,8 @@
  */
 package modelos;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
@@ -76,5 +78,33 @@ public class MWhile {
 
     public void setCantCuotas(int cantCuotas) {
         this.cantCuotas = cantCuotas;
+    }
+    
+    public double sumar (ArrayList<Double> lista) {
+        int i = 0;
+        while (i < lista.size()) {
+            if (lista.get(i) != -1)
+            {
+                this.suma += lista.get(i);
+            }
+            i++;
+        }
+        return this.suma;
+    }
+    public void cantidad (ArrayList<Integer> lista) {
+        int cont = 0;
+        while (lista.get(cont) != -1){
+            cont++;
+        }
+        this.aprobados = cont;
+    }
+    public int cuotasParaSaldar(ArrayList<Double> lista) {
+        int i = 0;
+        double suma = 0;
+        while (suma < 1000) {
+            suma += lista.get(i);
+            i++;
+        }
+        return i;
     }
 }

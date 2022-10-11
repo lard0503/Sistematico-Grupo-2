@@ -138,6 +138,9 @@
     <Component class="javax.swing.JTextField" name="tfNum3">
     </Component>
     <Component class="javax.swing.JTextField" name="tfNum2">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNum2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfOracion1">
       <Events>
