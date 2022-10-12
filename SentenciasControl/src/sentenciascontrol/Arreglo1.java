@@ -5,6 +5,10 @@
  */
 package sentenciascontrol;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import modelos.MArreglo1;
+
 /**
  *
  * @author José Alejandro Durán
@@ -14,9 +18,16 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
     /**
      * Creates new form Arreglos
      */
+    MArreglo1 Ar = new MArreglo1(0);
+    DefaultListModel modelo = new DefaultListModel();
+    DefaultListModel prom = new DefaultListModel();
+    
     public Arreglo1() {
         initComponents();
+        IsNumeros.setModel(modelo);
+        IsMayores.setModel(prom);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,7 +47,7 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
         tfElemento = new javax.swing.JTextField();
         bAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lsNumeros = new javax.swing.JList<>();
+        IsNumeros = new javax.swing.JList<>();
         tfMultiplo = new javax.swing.JTextField();
         pInfoArreglo = new javax.swing.JPanel();
         bMostrarMayorMenor = new javax.swing.JButton();
@@ -48,13 +59,13 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
         tfPromedio = new javax.swing.JTextField();
         bMostrarMayores = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lsMayores = new javax.swing.JList<>();
+        IsMayores = new javax.swing.JList<>();
 
         setClosable(true);
         setResizable(true);
         setTitle("Arreglo Unidemensional | Elementos enteros");
 
-        pArreglo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Arreglo de tipo entero", 2, 0));
+        pArreglo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Arreglo de tipo entero", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         lTam.setText("Tamaño:");
 
@@ -62,14 +73,30 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
         tfTam.setText("0");
 
         bSetTam.setText("Establecer Tamaño");
+        bSetTam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSetTamActionPerformed(evt);
+            }
+        });
 
         lMultiplos.setText("Almacenar sólo números múltiplos de:");
 
         lElemento.setText("Elemento:");
 
         bAgregar.setText("Agregar");
+        bAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarActionPerformed(evt);
+            }
+        });
 
-        jScrollPane1.setViewportView(lsNumeros);
+        jScrollPane1.setViewportView(IsNumeros);
+
+        tfMultiplo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfMultiploActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pArregloLayout = new javax.swing.GroupLayout(pArreglo);
         pArreglo.setLayout(pArregloLayout);
@@ -125,9 +152,14 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        pInfoArreglo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del arreglo", 2, 0));
+        pInfoArreglo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del arreglo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         bMostrarMayorMenor.setText("Mostrar el mayor y menor de los elementos");
+        bMostrarMayorMenor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMostrarMayorMenorActionPerformed(evt);
+            }
+        });
 
         lMayor.setText("Mayor:");
 
@@ -138,10 +170,20 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
         tfMenor.setEditable(false);
 
         bMostrarPromedio.setText("Mostrar Promedio");
+        bMostrarPromedio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMostrarPromedioActionPerformed(evt);
+            }
+        });
 
         bMostrarMayores.setText("Mostrar números mayores al promedio");
+        bMostrarMayores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMostrarMayoresActionPerformed(evt);
+            }
+        });
 
-        jScrollPane2.setViewportView(lsMayores);
+        jScrollPane2.setViewportView(IsMayores);
 
         javax.swing.GroupLayout pInfoArregloLayout = new javax.swing.GroupLayout(pInfoArreglo);
         pInfoArreglo.setLayout(pInfoArregloLayout);
@@ -214,6 +256,91 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void bSetTamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSetTamActionPerformed
+        // TODO add your handling code here:
+        try {
+            int tamanio = Integer.parseInt(tfTam.getText());
+            Ar.setSize(tamanio);
+            Ar.reservarArreglo();
+            bSetTam.setEnabled(false);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_bSetTamActionPerformed
+
+    private void tfMultiploActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfMultiploActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfMultiploActionPerformed
+
+    private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int multiplo = Integer.parseInt(tfMultiplo.getText());
+            tfMultiplo.setEditable(false);
+            int elemento = Integer.parseInt(tfElemento.getText());
+            tfElemento.setText("");
+            if (elemento % multiplo != 0) {
+                JOptionPane.showMessageDialog(this, "Elemento"
+                        + " no cumple las condiciones", "Error", 
+                        JOptionPane.ERROR_MESSAGE);
+            } else if (Ar.getAgregado() >= Ar.getSize()){
+                JOptionPane.showMessageDialog(this, "Arre"
+                        + "glo Lleno", "Mensaje",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Ar.agregarElemento(elemento);
+                modelo.removeAllElements();
+                for (int i = 0; i < Ar.getAgregado() + 1; i++) {
+                    modelo.add(i, Ar.getArreglo()[i]);
+                }
+                Ar.setAgregado(Ar.getAgregado() + 1);
+            }
+            
+                    
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_bAgregarActionPerformed
+
+    private void bMostrarMayorMenorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarMayorMenorActionPerformed
+        // TODO add your handling code here:
+        try {
+            tfMayor.setText(""+Ar.getMayor());
+            tfMenor.setText(""+Ar.getMenor());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_bMostrarMayorMenorActionPerformed
+
+    private void bMostrarPromedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarPromedioActionPerformed
+        // TODO add your handling code here:
+        try {
+            tfPromedio.setText(""+Ar.promedio());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_bMostrarPromedioActionPerformed
+
+    private void bMostrarMayoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMostrarMayoresActionPerformed
+        // TODO add your handling code here:
+        try {
+            prom.removeAllElements();
+            int j = 0;
+            for (int i = 0; i < Ar.getAgregado(); i++) {
+                if (Ar.getArreglo()[i] > Ar.promedio()) {
+                    prom.add(j, Ar.getArreglo()[i]);
+                    j++;
+                }               
+            }
+          
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }//GEN-LAST:event_bMostrarMayoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -251,6 +378,8 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> IsMayores;
+    private javax.swing.JList<String> IsNumeros;
     private javax.swing.JButton bAgregar;
     private javax.swing.JButton bMostrarMayorMenor;
     private javax.swing.JButton bMostrarMayores;
@@ -263,8 +392,6 @@ public class Arreglo1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lMenor;
     private javax.swing.JLabel lMultiplos;
     private javax.swing.JLabel lTam;
-    private javax.swing.JList<String> lsMayores;
-    private javax.swing.JList<String> lsNumeros;
     private javax.swing.JPanel pArreglo;
     private javax.swing.JPanel pInfoArreglo;
     private javax.swing.JTextField tfElemento;

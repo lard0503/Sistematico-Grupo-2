@@ -140,6 +140,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Establecer Tama&#xf1;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSetTamActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lMultiplos">
           <Properties>
@@ -157,6 +160,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAgregarActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -165,7 +171,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="lsNumeros">
+            <Component class="javax.swing.JList" name="IsNumeros">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
@@ -178,6 +184,9 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="tfMultiplo">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfMultiploActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -251,6 +260,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Mostrar el mayor y menor de los elementos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMostrarMayorMenorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lMayor">
           <Properties>
@@ -276,6 +288,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Mostrar Promedio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMostrarPromedioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="tfPromedio">
         </Component>
@@ -283,6 +298,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Mostrar n&#xfa;meros mayores al promedio"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMostrarMayoresActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
@@ -291,7 +309,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JList" name="lsMayores">
+            <Component class="javax.swing.JList" name="IsMayores">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                   <StringArray count="0"/>
